@@ -12,7 +12,11 @@ A solution set is:
 ]
 '''
 
-
+'''
+Two loop + Binary Search
+O(logn*n^2)
+'''
+'''
 class Solution(object):
     def threeSum(self, nums):
         """
@@ -30,7 +34,7 @@ class Solution(object):
                 third = self.twoSum(two_sum, temp)
                 if third[0]:
                     new = [num_1, num_2, third[1]]
-                    if self.removeRept(new, result):
+                    if self.checkRept(new, result):
                         result.append(new)
         return result
 
@@ -45,15 +49,39 @@ class Solution(object):
         except IndexError:
             return False, None
 
-    def removeRept(self, target, result):
+    def checkRept(self, target, result):
         for item in result:
             item.sort()
             target.sort()
             if target == item:
                 return False
         return True
+'''
 
-
-if __name__ == '__main__':
-    s = Solution()
-    print(s.threeSum([-1, 0, 1, 2, -1, -4]))
+'''
+One loop + TwoSum
+O(n^2)
+'''
+class Solution(object):
+    def threeSum(self, nums):
+        nums.sort()
+        result = []
+        for index, num in enumerate(nums[:len(nums)-1]):
+            if index > 0 and num == nums[index - 1]:
+                continue
+            i = index + 1
+            j = len(nums) - 1
+            while i < j:
+                if nums[i] + nums[j] < -num:
+                    i += 1
+                elif nums[i] + nums[j] > -num:
+                    j -= 1
+                else:
+                    result.append([num, nums[i], nums[j]])
+                    i += 1
+                    j -= 1
+                    while i < j and nums[i] == nums[i-1]:
+                        i += 1
+                    while i < j and nums[j] == nums[j+1]:
+                        j -= 1
+        return result
