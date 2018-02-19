@@ -24,7 +24,6 @@ public class Solution {
                 map.put(String.valueOf(ch), 1);
             }
         }
-        System.out.println(map);
         for (char item:s.toCharArray()) {
             String item_str = String.valueOf(item);
             if (stack.isEmpty()){
