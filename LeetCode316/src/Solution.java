@@ -31,7 +31,6 @@ public class Solution {
                 map.replace(item_str, map.get(item_str)-1);
                 continue;
             }
-            //if provided string only has one item
             if (!stack.contains(item_str)){
                 while (!stack.isEmpty() && item_str.charAt(0) < stack.peek().charAt(0) && map.get(stack.peek()) != 0){
                     stack.pop();
