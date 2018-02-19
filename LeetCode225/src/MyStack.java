@@ -14,8 +14,8 @@ Depending on your language, queue may not be supported natively. You may simulat
 You may assume that all operations are valid (for example, no pop or top operations will be called on an empty stack).
  */
 class MyStack {
-    Queue<Integer> queue;
-    Queue<Integer> helper;
+    private Queue<Integer> queue;
+    private Queue<Integer> helper;
     /** Initialize your data structure here. */
     public MyStack() {
         queue = new LinkedList<>();
