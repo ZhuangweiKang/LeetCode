@@ -19,8 +19,7 @@ Bonus points if you could solve it both recursively and iteratively.
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        if (root == null) return true;
-        return isSymmetricHelperL(root.left).equals(isSymmetricHelperR(root.right));
+        return (root == null) || isSymmetricHelperL(root.left).equals(isSymmetricHelperR(root.right));
     }
 
     private String isSymmetricHelperL(TreeNode root){
