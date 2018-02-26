@@ -31,8 +31,7 @@ Return false.
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-        if (root == null) return true;
-        return (Math.abs(treeHeight(root.left) - treeHeight(root.right)) <= 1) && isBalanced(root.left) && isBalanced(root.right);
+        return (root == null) || (Math.abs(treeHeight(root.left) - treeHeight(root.right)) <= 1) && isBalanced(root.left) && isBalanced(root.right);
     }
 
     private int treeHeight(TreeNode root){
