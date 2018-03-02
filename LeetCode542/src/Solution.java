@@ -34,11 +34,7 @@ class Solution {
         int[][] res = new int[matrix.length][matrix[0].length];
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
-                if (matrix[i][j] == 0) res[i][j] = 0;
-                else {
-                    if (nextzero(matrix, i, j)) res[i][j] = 1;
-                    else res[i][j] = updateMatrixHelper(matrix, i, j, 0);
-                }
+                res[i][j] = (matrix[i][j] == 0) ? 0 : (nextzero(matrix, i, j) ? 1 : updateMatrixHelper(matrix, i, j, 0));
                 max = 0;
                 flag = false;
             }
@@ -47,26 +43,13 @@ class Solution {
     }
 
     private boolean nextzero(int[][] matrix, int i, int j) {
-        if (i > 0 && matrix[i-1][j] == 0) return true;
-        if (j > 0 && matrix[i][j-1] == 0) return true;
-        if (i+1 < matrix.length && matrix[i+1][j] == 0) return true;
-        if (j+1< matrix[0].length && matrix[i][j+1] == 0) return true;
-        return false;
+        return  ((i > 0 && matrix[i-1][j] == 0) || (j > 0 && matrix[i][j-1] == 0) || (i+1 < matrix.length && matrix[i+1][j] == 0) || (j+1< matrix[0].length && matrix[i][j+1] == 0));
     }
 
     private int updateMatrixHelper(int[][] matrix, int i, int j, int rec) {
         if ((i >= 0 && i < matrix.length && j >= 0 && j < matrix[0].length && matrix[i][j] != 0 && matrix[i][j] != -1) && (!flag || rec < max)) {
             matrix[i][j] = -1;
-            int res =  1 + Math.min(
-                    Math.min(
-                            updateMatrixHelper(matrix, i, j+1,rec+1),
-                            updateMatrixHelper(matrix, i+1, j,rec+1)
-                    ),
-                    Math.min(
-                            updateMatrixHelper(matrix, i-1, j,rec+1),
-                            updateMatrixHelper(matrix, i, j-1,rec+1)
-                    )
-            );
+            int res =  1 + Math.min(Math.min(updateMatrixHelper(matrix, i, j+1,rec+1), updateMatrixHelper(matrix, i+1, j,rec+1)), Math.min(updateMatrixHelper(matrix, i-1, j,rec+1), updateMatrixHelper(matrix, i, j-1,rec+1)));
             matrix[i][j] = 1;
             return res;
         }else {
