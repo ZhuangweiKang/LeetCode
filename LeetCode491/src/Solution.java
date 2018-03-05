@@ -15,15 +15,14 @@ import java.util.*;
 class Solution {
     public List<List<Integer>> findSubsequences(int[] nums) {
         Set<List<Integer>> res = new HashSet<>();
-        Arrays.sort(nums);
-        findSubsequenceHelper(res, new LinkedList<>(), 0, nums);
+        findSubsequenceHelper(res, new ArrayList<>(), 0, nums);
         return new ArrayList<>(res);
     }
     private void findSubsequenceHelper(Set<List<Integer>> res, List<Integer> list, int index, int[] nums) {
         if (list.size() >= 2)
-            res.add(list);
+            res.add(new ArrayList<>(list));
         for (int i = index; i < nums.length; i++) {
-            if (list.size() == 0 || list.get(list.size()-1) <= nums[i]){
+            if (list.size() == 0 || nums[i] >= list.get(list.size()-1)) {
                 list.add(nums[i]);
                 findSubsequenceHelper(res, list, i+1, nums);
                 list.remove(list.size()-1);
