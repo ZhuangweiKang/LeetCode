@@ -55,6 +55,7 @@ class Solution {
 
     private int get_end(String s, int i) {
         int stack = 0;
+        //跳过数字
         while (Character.isDigit(s.charAt(i))) i++;
         int end = i;
         while (stack != 0 || end == i) {
