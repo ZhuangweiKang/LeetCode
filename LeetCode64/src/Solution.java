@@ -18,11 +18,9 @@ class Solution {
             for (int j = 0; j < n; j++)
                 val[i][j] = Integer.MAX_VALUE;
         val[0][0] = grid[0][0];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
                 minPathSumHelper(i, j, grid, val, m, n);
-            }
-        }
         return val[m-1][n-1];
     }
     private void minPathSumHelper(int i, int j, int[][] grid, int[][] val, int m, int n) {
