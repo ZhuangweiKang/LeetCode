@@ -1,6 +1,7 @@
 import java.util.Stack;
 
 class Solution {
+    /*
     public boolean isPalindrome(ListNode head) {
         Stack<ListNode> stack = new Stack<>();
         for (ListNode node = head; node != null; node = node.next) stack.push(node);
@@ -9,4 +10,5 @@ class Solution {
             if (stack.pop().val != node.val) return false;
         return true;
     }
+    */
 }
